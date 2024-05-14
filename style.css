@@ -1,0 +1,170 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+/* 위의 코드설명
+*별표는 all이라는 의미로 모든 태그를 선택합니다
+ margin: 0px; padding: 0px;을 쓰는 이유는
+ 모든 태그마다 기본적으로 가지고있는 마진,패딩이 존재하는데
+ 이것을 그대로 두면 개발자가 적용한 마진, 패딩에 덮어써져서
+ 정확한 내용이 되지않으므로 리셋하는 내용입니다
+  */
+.community {
+	width: 100%;
+	background-color: aliceblue;
+	padding-top: 50px;
+}
+.community .inner {
+	width: 1180px;
+	margin: 0px auto;
+	background-color: antiquewhite;
+	padding: 0 20px;
+	position: relative;
+	/* 기준점을 inner로 고정시켜줍니다 */
+}
+.community .inner .center-line {
+	width: 4px;
+	height: 100%;
+	background-color: #000;
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	margin-left: -2px;
+}
+.community .inner .center-line .scroll-icon {
+	width: 40px;
+	height: 40px;
+	background-color: #f2f2f2;
+	border-radius: 50%;
+	font-size: 25px;
+	text-align: center;
+	line-height: 40px;
+	color: #ff7979;
+	position: absolute;
+	bottom: 0px;
+	left: 50%;
+	/* transform: translateX(-50%); */
+	margin-left: -20px;
+}
+.community .inner .row {
+	display: flex;
+}
+.community .inner .row section {
+	background-color: #eee;
+	border-radius: 5px;
+	width: calc(50% - 40px);
+	padding: 20px;
+	position: relative;
+}
+.community .inner .row section .fa-house {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #f2f2f2;
+	color: #ff7979;
+	text-align: center;
+	line-height: 40px;
+	font-size: 17px;
+	position: absolute;
+}
+.community .inner .row section .details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	/* justify-content: space-between; */
+}
+.community .inner .row section .title {
+	font-size: 22px;
+	font-weight: 600;
+}
+.community .inner .row section p {
+	font: 15px/1.5 'arial';
+	color: #333;
+	margin: 10px 0px 17px 0px;
+}
+.community .inner .row section .bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.community .inner .row section .bottom button {
+	width: 80px;
+	height: 40px;
+	/* border: none;
+	outline: none; */
+	background-color: #ff7979;
+	color: #fff;
+}
+.row-1 {
+	justify-content: flex-start;
+}
+.row-2 {
+	justify-content: flex-end;
+}
+.row-1 section .fa-house {
+	top: 15px;
+	right: -60px;
+}
+.row-2 section .fa-house {
+	top: 15px;
+	left: -60px;
+}
+
+/* 
+미디어쿼리 mediaquery -화면의 사이즈를 인식해서, 서로다른 css를 적용시키는 것입니다
+특정 브라우저의 폭을 지정해서 css구문을 입력하면 해당 브라우저 폭에서는
+미디어 쿼리 안쪽 구문이 기존의 css구문을 덮어쓰고
+최신 css구문이(더 하단에 작성된) 기존의 구문을 덮어쓰는 원칙을 이용한것
+
+반응형 웹사이트 vs 적응형 웹사이트
+반응형 웹사이트 - 하나의 주소(htm1이 같다는 의미)로 데스크탑버전의 웹페이지와 테블릿 혹은 모바일의 버전의 웹페이지를
+커버할 수 있는 절약적인 웹사이트 구현방법
+장점 : 돈을 절약할수 있다
+
+적응형 웹사이트 - 디바이스 별로 html을 만들어서
+데스크탑, 테블릿, 모바일에 따른 사용자 경험을 향상시키는 것을 목적으로
+세분화, 구분화해서 웹사이트를 구현하는 방법
+장점 : 세분화된 콘텐츠로 UX를 향상시킬수 있다
+*/
+
+/* inner 1180px을 부여했습니다. 따라서 이 크기보다 1px 작은 1179px의
+디바이스 너비를 인색해서, 해당 영역으로 들어가면 {}안의 쿼리로
+css가 적용되게 합니다 */
+@media screen and (max-width: 1179px) {
+	/* 미디어쿼리를 작성하는 원칙
+		1. 고정된 px을 %나 뷰포트(vw,vh등)로 변경합니다
+		2. 만약 원본 css와 속성의 값이 같다면 생략합니다
+			(두번 쓸 이유가 없으므로 같은 값은 지움)
+		3. 해당 구간에 추가해야하는 경우 원본 css구문의 태그 경로를
+		유지하면 동일하게 미디어쿼리 구간에 작성합니다
+	*/
+	.community .inner {
+		/* 1원칙대로 고정px를 %로 바꿉니다 */
+		width: 100%;
+	}
+	.community .inner .center-line {
+		left: 40px;
+	}
+	.community .inner .row {
+		margin: 30px 0px 3px 60px;
+	}
+	.community .inner .row section {
+		width: 100%;
+	}
+	.community .inner .row section .fa-house {
+		left: -60px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.community .inner .center-line {
+		display: none;
+	}
+	.community .inner .row {
+		margin: 10px 0px;
+	}
+	.community .inner .row section .fa-house {
+		display: none;
+	}
+}
